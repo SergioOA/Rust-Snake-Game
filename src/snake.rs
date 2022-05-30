@@ -10,8 +10,8 @@ pub enum SnakeDirection {
 }
 
 impl SnakeDirection {
-    fn to_vector(&self) -> Vec<i8> {
-        match &self {
+    fn to_vector(self) -> Vec<i8> {
+        match self {
             SnakeDirection::Up => vec![0, -1],
             SnakeDirection::Down => vec![0, 1],
             SnakeDirection::Left => vec![-1, 0],
@@ -38,7 +38,7 @@ impl Snake {
                 return true;
             }
         }
-        return false;
+        false
     }
 
     fn move_to(&mut self, x: i8, y: i8) {

@@ -36,7 +36,7 @@ impl GameState {
 
 impl EventHandler for GameState {
     fn update(&mut self, ctx: &mut Context) -> GameResult<()> {
-        while !timer::check_update_time(ctx, 16) {
+        if !timer::check_update_time(ctx, 16) {
             return Ok(());
         }
 

@@ -23,7 +23,7 @@ impl Food {
     }
 
     pub fn compare_position(&self, other: Vec<i8>) -> bool {
-        return self.position[0] == other[0] && self.position[1] == other[1];
+        self.position[0] == other[0] && self.position[1] == other[1]
     }
 
     pub fn render(&self, ctx: &mut Context) {
