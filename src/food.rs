@@ -3,14 +3,13 @@ use rand::prelude::*;
 
 #[derive(Debug)]
 pub struct Food {
-    position: Vec<i8>
+    position: Vec<i8>,
 }
 
 impl Food {
-
     pub fn new() -> Self {
         Self {
-            position: random_position()
+            position: random_position(),
         }
     }
 
@@ -35,10 +34,10 @@ impl Food {
             TILE_WIDTH as i32,
             TILE_WIDTH as i32,
         );
-        let drawing = graphics::Mesh::new_rectangle(ctx, graphics::DrawMode::fill(), bounds, color).unwrap();
+        let drawing =
+            graphics::Mesh::new_rectangle(ctx, graphics::DrawMode::fill(), bounds, color).unwrap();
         let _ = graphics::draw(ctx, &drawing, (ggez::mint::Point2 { x: 0.0, y: 0.0 },));
     }
-
 }
 
 pub fn random_position() -> Vec<i8> {

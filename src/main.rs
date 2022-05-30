@@ -1,15 +1,15 @@
-mod snake;
 mod food;
+mod snake;
 mod prelude {
     pub const TILE_WIDTH: i8 = 40;
     pub const BOARD_SQUARES_WIDTH: u8 = 20;
     pub const BOARD_SQUARES_HEIGHT: u8 = 15;
-    pub use ggez::{Context, ContextBuilder, GameResult};
-    pub use ggez::graphics::{self, Color};
-    pub use ggez::event::{self, EventHandler, KeyCode, KeyMods};
-    pub use ggez::timer;
-    pub use crate::snake::*;
     pub use crate::food::*;
+    pub use crate::snake::*;
+    pub use ggez::event::{self, EventHandler, KeyCode, KeyMods};
+    pub use ggez::graphics::{self, Color};
+    pub use ggez::timer;
+    pub use ggez::{Context, ContextBuilder, GameResult};
 }
 
 use prelude::*;
@@ -18,7 +18,7 @@ struct GameState {
     score: u32,
     snake: Snake,
     direction: SnakeDirection,
-    food: Food
+    food: Food,
 }
 
 impl GameState {
@@ -27,14 +27,13 @@ impl GameState {
             score: 0,
             snake: Snake::new(),
             direction: SnakeDirection::Down,
-            food: Food::new()
+            food: Food::new(),
         }
     }
 }
 
 impl EventHandler for GameState {
     fn update(&mut self, ctx: &mut Context) -> GameResult<()> {
-
         while !timer::check_update_time(ctx, 16) {
             return Ok(());
         }
@@ -48,7 +47,7 @@ impl EventHandler for GameState {
                 } else {
                     self.snake.remove_tail();
                 }
-            },
+            }
             Err(_) => {
                 reset_game(self);
             }
@@ -79,7 +78,6 @@ impl EventHandler for GameState {
             _ => {}
         }
     }
-
 }
 
 fn reset_game(state: &mut GameState) {

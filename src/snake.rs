@@ -6,22 +6,19 @@ pub enum SnakeDirection {
     Up,
     Left,
     Down,
-    Right
+    Right,
 }
 
 impl SnakeDirection {
-
     fn to_vector(&self) -> Vec<i8> {
         match &self {
             SnakeDirection::Up => vec![0, -1],
             SnakeDirection::Down => vec![0, 1],
             SnakeDirection::Left => vec![-1, 0],
-            SnakeDirection::Right => vec![1, 0]
+            SnakeDirection::Right => vec![1, 0],
         }
     }
-
 }
-
 
 #[derive(Debug)]
 pub struct Snake {
@@ -29,10 +26,9 @@ pub struct Snake {
 }
 
 impl Snake {
-
     pub fn new() -> Self {
         Self {
-            body_list: LinkedList::from([vec![1, 1]])
+            body_list: LinkedList::from([vec![1, 1]]),
         }
     }
 
@@ -56,7 +52,11 @@ impl Snake {
         let new_x: i8 = head_node[0] + offset[0];
         let new_y: i8 = head_node[1] + offset[1];
 
-        if new_x < 0 || new_y < 0 || new_x >= BOARD_SQUARES_WIDTH as i8 || new_y >= BOARD_SQUARES_HEIGHT as i8 {
+        if new_x < 0
+            || new_y < 0
+            || new_x >= BOARD_SQUARES_WIDTH as i8
+            || new_y >= BOARD_SQUARES_HEIGHT as i8
+        {
             return Err("You left the board!".to_string());
         }
 
@@ -77,7 +77,9 @@ impl Snake {
                 TILE_WIDTH as i32,
                 TILE_WIDTH as i32,
             );
-            let drawing = graphics::Mesh::new_rectangle(ctx, graphics::DrawMode::fill(), bounds, color).unwrap();
+            let drawing =
+                graphics::Mesh::new_rectangle(ctx, graphics::DrawMode::fill(), bounds, color)
+                    .unwrap();
             let _ = graphics::draw(ctx, &drawing, (ggez::mint::Point2 { x: 0.0, y: 0.0 },));
         }
     }
@@ -85,5 +87,4 @@ impl Snake {
     pub fn remove_tail(&mut self) {
         self.body_list.pop_back();
     }
-
 }
