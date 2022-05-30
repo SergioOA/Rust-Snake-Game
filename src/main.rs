@@ -1,10 +1,12 @@
 mod food;
+mod gui;
 mod snake;
 mod prelude {
     pub const TILE_WIDTH: i8 = 40;
     pub const BOARD_SQUARES_WIDTH: u8 = 20;
     pub const BOARD_SQUARES_HEIGHT: u8 = 15;
     pub use crate::food::*;
+    pub use crate::gui::*;
     pub use crate::snake::*;
     pub use ggez::event::{self, EventHandler, KeyCode, KeyMods};
     pub use ggez::graphics::{self, Color};
@@ -60,6 +62,7 @@ impl EventHandler for GameState {
         graphics::clear(ctx, Color::WHITE);
         self.snake.render(ctx);
         self.food.render(ctx);
+        render_gui(ctx, self.score);
         graphics::present(ctx)
     }
 
